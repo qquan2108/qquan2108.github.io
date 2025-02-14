@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="donate-area">
+        <h1>Donate cho tao</h1>
+        <!-- Mục nhập số tiền quyên góp -->
+        <form id="donateForm">
+            <label for="amount">Số tiền bạn muốn quyên góp:</label><br>
+            <input type="number" id="amount" name="amount"><br>
+            <button type="submit">Quyên góp ngay</button>
+        </form>
+
+    </div>
+    
+    <!-- Mục hiển thị thông tin QR code (nếu cần) -->
+    <div class="info-area">
+        <h2>QR Code của bạn:</h2>
+        <!-- Mục hiển thị QR code -->
+        <div id="qrCode"></div>
+        <p>Vui lòng quét mã QR trên để donate</p>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

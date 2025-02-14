@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.donate-area, .info-area {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    margin: 20px;
+}
+
+.donate-area h1 {
+    color: #333;
+}
+
+.donate-area input[type="number"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.donate-area button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.donate-area button:hover {
+    background-color: #218838;
+}
+
+#qrCode img {
+    max-width: 100%;
+    height: auto;
+}
+
+.info-area h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.info-area p {
+    font-size: 16px;
+}
