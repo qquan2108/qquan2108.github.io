@@ -14,5 +14,5 @@ document.getElementById('donateForm').addEventListener('submit', function(event)
     var qrCodeUrl = 'https://img.vietqr.io/image/' + bank_id + '-' + account_no + '-' + template + '.png?amount=' + amount + '&addInfo=' + encodeURIComponent(description) + '&accountName=' + encodeURIComponent(account_name);
 
     // Hiển thị mã QR code
-    document.getElementById('qrCode').innerHTML = '<img src="' + qrCodeUrl + '" alt="QR Code">';
+    document.getElementById('qrCode').innerHTML = '<img src="' + qrCodeUrl + '" alt="QR Code"> <p>Vui lòng quét mã QR trên để donate</p>';
 });
