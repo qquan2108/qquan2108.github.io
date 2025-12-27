@@ -6,9 +6,9 @@ document.getElementById('donateForm').addEventListener('submit', function(event)
 
     // Tạo URL mã QR code, API: https://www.vietqr.io/danh-sach-api/link-tao-ma-nhanh/
     var bank_id = '970422'; 
-    var account_no = '699496';
+    var account_no = '933349999';
     var template = 'compact2';
-    var description = 'donate cho tao';
+    var description = 'du an nuoi anh';
     var account_name = '';
 
     var qrCodeUrl = 'https://img.vietqr.io/image/' + bank_id + '-' + account_no + '-' + template + '.png?amount=' + amount + '&addInfo=' + encodeURIComponent(description) + '&accountName=' + encodeURIComponent(account_name);
