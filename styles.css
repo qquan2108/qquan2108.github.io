@@ -1,61 +1,337 @@
+:root {
+    --bg-1: #0b1c2a;
+    --bg-2: #12324a;
+    --bg-3: #1c4a5a;
+    --accent: #ff7a59;
+    --accent-2: #2ec4b6;
+    --card: rgba(255, 255, 255, 0.88);
+    --text: #0f1b23;
+    --muted: #516170;
+    --ring: rgba(255, 255, 255, 0.35);
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: "Space Grotesk", "Trebuchet MS", "Segoe UI", sans-serif;
+    color: var(--text);
     margin: 0;
-    padding: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 55%),
+        radial-gradient(circle at 70% 20%, rgba(46, 196, 182, 0.25), transparent 50%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
+    background-size: 200% 200%;
+    animation: bg-pan 18s ease infinite;
+    overflow-x: hidden;
+}
+
+.bg-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(20px);
+    opacity: 0.55;
+    z-index: 0;
+    animation: orb-float 12s ease-in-out infinite;
+}
+
+.orb-1 {
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(255, 122, 89, 0.8), transparent 65%);
+    top: -40px;
+    left: -40px;
+}
+
+.orb-2 {
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(46, 196, 182, 0.8), transparent 65%);
+    bottom: 10%;
+    right: -60px;
+    animation-delay: 1.5s;
+}
+
+.orb-3 {
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(255, 214, 102, 0.7), transparent 65%);
+    top: 55%;
+    left: 8%;
+    animation-delay: 0.6s;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    align-items: stretch;
+    padding: 90px 24px 80px;
     min-height: 100vh;
 }
 
-.donate-area, .info-area {
-    text-align: center;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.panel {
+    background: var(--card);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 20px 60px rgba(10, 24, 38, 0.25);
     padding: 40px;
-    margin: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+}
+
+body.is-ready .reveal {
+    animation: reveal 0.8s ease forwards, float 10s ease-in-out infinite;
+    animation-delay: var(--delay, 0ms), 1.2s;
+}
+
+.delay-1 {
+    --delay: 0.1s;
+}
+
+.delay-2 {
+    --delay: 0.25s;
+}
+
+.donate-area {
+    text-align: left;
 }
 
 .donate-area h1 {
-    color: #333;
+    font-family: "Fraunces", "Times New Roman", serif;
+    font-size: 2.4rem;
+    margin: 0 0 8px;
+}
+
+.subtitle {
+    margin: 0 0 28px;
+    color: var(--muted);
+    font-size: 1rem;
+}
+
+.donate-area form {
+    display: grid;
+    gap: 14px;
+}
+
+.donate-area label {
+    font-weight: 600;
+    color: var(--text);
 }
 
 .donate-area input[type="number"] {
-    width: 80%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid rgba(15, 27, 35, 0.15);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: inset 0 1px 2px rgba(15, 27, 35, 0.08);
+    font-size: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.donate-area input[type="number"]:focus {
+    outline: none;
+    border-color: var(--accent-2);
+    box-shadow: 0 0 0 4px rgba(46, 196, 182, 0.2);
+    transform: translateY(-1px);
 }
 
 .donate-area button {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(120deg, var(--accent), #ffb347);
+    color: #fff;
+    padding: 14px 22px;
     border: none;
-    border-radius: 5px;
+    border-radius: 999px;
     cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.2px;
+    box-shadow: 0 16px 30px rgba(255, 122, 89, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: pulse 4s ease-in-out infinite;
+}
+
+.donate-area button::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 60%;
+    height: 200%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transform: rotate(20deg);
+    animation: sweep 3.8s ease infinite;
 }
 
 .donate-area button:hover {
-    background-color: #218838;
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 20px 36px rgba(255, 122, 89, 0.45);
+}
+
+.info-area {
+    text-align: left;
+}
+
+.info-area h2 {
+    margin: 0 0 18px;
+    font-size: 1.4rem;
+}
+
+#qrCode {
+    min-height: 240px;
+    border-radius: 20px;
+    border: 1px dashed rgba(15, 27, 35, 0.2);
+    background: rgba(255, 255, 255, 0.65);
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    text-align: center;
+    color: var(--muted);
+    position: relative;
+    overflow: hidden;
+}
+
+#qrCode:empty::before {
+    content: "Your QR will appear here";
+}
+
+#qrCode.pop img {
+    animation: qr-pop 0.6s ease;
 }
 
 #qrCode img {
     max-width: 100%;
     height: auto;
+    border-radius: 16px;
+    box-shadow: 0 12px 24px rgba(15, 27, 35, 0.18);
 }
 
-.info-area h2 {
-    color: #333;
-    margin-bottom: 15px;
+#qrCode p {
+    margin: 14px 0 0;
+    color: var(--text);
+    font-weight: 500;
 }
 
-.info-area p {
-    font-size: 16px;
+.info-area.has-qr #qrCode {
+    border-style: solid;
+    background: rgba(255, 255, 255, 0.85);
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        box-shadow: 0 16px 30px rgba(255, 122, 89, 0.35);
+    }
+    50% {
+        box-shadow: 0 22px 40px rgba(255, 122, 89, 0.5);
+    }
+}
+
+@keyframes sweep {
+    0% {
+        transform: translateX(-40%) rotate(20deg);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateX(220%) rotate(20deg);
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes qr-pop {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    70% {
+        transform: scale(1.03);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes orb-float {
+    0%,
+    100% {
+        transform: translateY(0) translateX(0) scale(1);
+    }
+    50% {
+        transform: translateY(-18px) translateX(12px) scale(1.05);
+    }
+}
+
+@keyframes bg-pan {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@media (max-width: 800px) {
+    .container {
+        padding: 70px 18px 60px;
+    }
+
+    .panel {
+        padding: 32px 24px;
+    }
+
+    .donate-area {
+        text-align: center;
+    }
+
+    .info-area {
+        text-align: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
 }
